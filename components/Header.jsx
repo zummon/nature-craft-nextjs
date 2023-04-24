@@ -21,13 +21,11 @@ export default function ({ title, description }) {
               {pathname == '/' ? (
                 ''
               ) : (
-                <>
-                  <Link
-                    href="/"
-                    className="uk-icon-link uk-margin-bottom uk-margin-right"
-                    uk-icon="icon: home; ratio: 2"
-                  ></Link>
-                </>
+                <Link
+                  href="/"
+                  className="uk-icon-link uk-margin-bottom uk-margin-right"
+                  uk-icon="icon: home; ratio: 2"
+                ></Link>
               )}
               <Link
                 href="/blog"
