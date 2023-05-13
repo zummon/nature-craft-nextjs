@@ -20,6 +20,4 @@ Add, edit and remove your contents in `./blogs` to generate the site pages.
 
 [Photo by Juan Vargas from Pexels](https://www.pexels.com/photo/figurine-of-cute-owl-on-table-5922834/)
 
----
 
-[Made by zummon](https://zummon.page/)
