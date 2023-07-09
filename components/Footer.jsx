@@ -5,7 +5,7 @@ export default function () {
         className="uk-section uk-background-secondary uk-light uk-background-cover uk-background-fixed uk-background-blend-soft-light"
         style={{
           backgroundImage:
-            'url(https://images.pexels.com/photos/5483826/pexels-photo-5483826.jpeg?w=1280)',
+            "url(https://images.pexels.com/photos/5483826/pexels-photo-5483826.jpeg?w=1280)",
         }}
       >
         <div className="uk-container uk-container-small">
@@ -34,9 +34,7 @@ export default function () {
             <div>
               <h3>Paragraph</h3>
               <p>
-                <a href="https://zummon.page/" target="_blank">
-                  Made by zummon
-                </a>
+                <span>Made by zummon (Teerapat Anantarattanachai)</span>
               </p>
             </div>
 
