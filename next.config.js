@@ -1,5 +1,7 @@
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
 };
 
-module.exports = nextConfig;
+const withMDX = require("@next/mdx")();
+module.exports = withMDX(nextConfig);
