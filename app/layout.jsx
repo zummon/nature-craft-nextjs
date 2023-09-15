@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import "../styles/globals.css";
+// import { getBlog } from "./blog/[slug]/page";
 
 export default function Document({ children }) {
-	const { pathname } = useRouter();
+	const pathname = usePathname();
+	let { title, description } = { title: "title", description: "description" }; //getBlog(slug);
 
 	return (
 		<html>
@@ -22,9 +24,9 @@ export default function Document({ children }) {
 					<div className="max-w-5xl mx-auto">
 						<div className="ml-auto lg:w-2/3">
 							<h1 className="text-white mb-5 text-4xl lg:text-5xl xl:text-6xl">
-								title
+								{title}
 							</h1>
-							<p className="text-2xl mb-5">description</p>
+							<p className="text-2xl mb-5">{description}</p>
 							<div className="flex flex-wrap gap-5 items-center">
 								{pathname !== "/" && (
 									<div className="">

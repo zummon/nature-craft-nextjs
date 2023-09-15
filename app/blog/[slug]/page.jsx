@@ -1,9 +1,11 @@
 import Link from "next/link";
 import matter from "gray-matter";
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { readdirSync, readFileSync } from "fs";
 
-export async function generateMetadata() {
+export async function generateMetadata({ params: { slug } }) {
+	let { title, description, date, image } = getBlog(slug);
+
 	return {
 		title,
 		description,
@@ -22,7 +24,12 @@ export async function generateMetadata() {
 }
 
 export function getBlog(slug) {
-	const { data, content } = matter(readFileSync(`./app/[slug]/${slug}.md`));
+	if (!slug) {
+		return {};
+	}
+	const { data, content } = matter(
+		readFileSync(`./app/blog/[slug]/${slug}.md`)
+	);
 
 	return {
 		...data,
@@ -37,13 +44,19 @@ export function getBlog(slug) {
 }
 
 export function getBlogPaths() {
-	return readdirSync("./app/[slug]").map((file) => file.replace(/\.md?$/, ""));
+	return readdirSync("./app/blog/[slug]")
+		.filter((file) => {
+			return file.endsWith(".md");
+		})
+		.map((file) => {
+			return file.slice(0, -3);
+		});
 }
 
 export function generateStaticParams() {
-	return getBlogPaths().map((slug) => ({
-		slug,
-	}));
+	return getBlogPaths().map((slug) => {
+		return { slug };
+	});
 }
 
 export default function Blog({ params: { slug } }) {

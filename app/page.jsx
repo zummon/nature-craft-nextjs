@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getBlogPaths } from "./blog/[slug]/page";
+import { getBlogPaths, getBlog } from "./blog/[slug]/page";
 
 export function getAllBlogs() {
 	return getBlogPaths()
@@ -24,7 +24,7 @@ export async function generateMetadata() {
 	};
 }
 
-export default function Home({}) {
+export default function Home() {
 	let blogs = getAllBlogs().slice(0, 4);
 
 	return (

@@ -18,7 +18,7 @@ export async function generateMetadata() {
 	};
 }
 
-export default function Blogs({}) {
+export default function Blogs() {
 	let blogs = getAllBlogs();
 
 	return (
