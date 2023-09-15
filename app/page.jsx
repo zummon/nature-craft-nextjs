@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getBlogPaths } from "./blog/[slug]/page";
 
 export function getAllBlogs() {
 	return getBlogPaths()
@@ -23,105 +24,121 @@ export async function generateMetadata() {
 	};
 }
 
-export default function Home({ blogs }) {
+export default function Home({}) {
 	let blogs = getAllBlogs().slice(0, 4);
 
 	return (
 		<>
-			<div className="uk-container uk-margin-large">
-				<div uk-slider="">
-					<ul
-						className="uk-slider-items uk-grid-match uk-child-width-1-3@m uk-child-width-1-2@s"
-						uk-grid=""
-					>
-						{blogs.map((props, index) => (
-							<li key={`blog-${index}`}>
-								<div
-									className={`uk-card ${
-										invert ? "uk-card-secondary" : "uk-card-default"
-									}`}
-								>
-									<div
-										className="uk-card-media-top uk-height-medium uk-background-cover"
-										style={{ backgroundImage: `url(${image.src})` }}
+			<div className="max-w-6xl mx-auto mb-10">
+				<div className="flex gap-6 overflow-x-clip snap-x pb-8 lg:gap-9">
+					{blogs.map((blog, index) => (
+						<div
+							key={`blog-${index}`}
+							className={`shadow-lg flex flex-col min-w-[360px] snap-center ${
+								blog.invert ? "bg-zinc-900 text-white" : "bg-white"
+							}`}
+						>
+							<div
+								className="h-72 bg-cover bg-center flex"
+								style={{ backgroundImage: `url(${blog.image.src})` }}
+							>
+								<div className="my-4 mr-4 ml-auto">
+									<span
+										className={`py-0.5 px-2 text-sm shadow ${
+											blog.invert ? "bg-zinc-900 text-white" : "bg-white"
+										}`}
 									>
-										<div
-											className={`uk-card-badge uk-label ${
-												invert
-													? "uk-background-secondary"
-													: "uk-background-default"
-											}`}
-											style={{ color: invert ? "#fff" : "#000" }}
-										>
-											{date}
-										</div>
-									</div>
-									<div className="uk-card-body">
-										<h3 className="uk-card-title">{title}</h3>
-										<p>{description}</p>
-										<Link
-											href={`/blog/${slug}`}
-											className="uk-button uk-button-secondary"
-										>
-											Read
-										</Link>
-									</div>
+										{blog.date}
+									</span>
 								</div>
-							</li>
-						))}
-					</ul>
-					<ul className="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+							</div>
+							<div className="p-8 flex flex-col gap-4 flex-1 justify-between">
+								<h3 className="text-2xl">{blog.title}</h3>
+								<p className="">{blog.description}</p>
+								<div className="">
+									<Link
+										href={`/blog/${blog.slug}`}
+										className={`inline-block px-7 py-2 shadow ${
+											blog.invert
+												? "bg-white text-black"
+												: "bg-zinc-900 text-white"
+										}`}
+									>
+										Read
+									</Link>
+								</div>
+							</div>
+						</div>
+					))}
 				</div>
 			</div>
 
-			<div className="uk-margin-large">
-				<div className="uk-width-2-3@m">
+			<div className="mb-10">
+				<div className="flex items-center lg:w-2/3 shadow-xl bg-white">
 					<div
-						className="uk-flex uk-flex-middle uk-card uk-card-default uk-margin-right uk-margin-remove-right@m"
-						id="about"
-					>
-						<div
-							className="uk-width-1-3 uk-card-media-left uk-height-large uk-background-cover"
-							style={{
-								backgroundImage: `url(https://images.pexels.com/photos/6137913/pexels-photo-6137913.jpeg?w=640)`,
-							}}
-						></div>
-						<div className="uk-width-2-3 uk-card-body">
-							<h2 className="uk-heading-small">About</h2>
-							<p className="uk-h4 uk-margin-top">
-								Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id
-								doloremque accusantium at cupiditate quaerat temporibus?
-							</p>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-						</div>
+						className="w-1/3 h-80 lg:h-96 bg-cover bg-center"
+						style={{
+							backgroundImage: `url(https://images.pexels.com/photos/6137913/pexels-photo-6137913.jpeg?w=640)`,
+						}}
+					></div>
+					<div className="w-2/3 p-4 lg:p-8">
+						<h2
+							className="text-3xl lg:text-4xl xl:text-5xl mb-4 lg:mb-8 scroll-m-24"
+							id="about"
+						>
+							About
+						</h2>
+						<p className="text-xl mb-4 lg:mb-8">
+							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id
+							doloremque accusantium at cupiditate quaerat temporibus?
+						</p>
+						<p className="">
+							Lorem ipsum dolor sit amet consectetur adipisicing.
+						</p>
 					</div>
 				</div>
 			</div>
 
-			<div className="uk-margin-large">
-				<div className="uk-width-2-3@m uk-margin-auto-left">
+			<div className="mb-10">
+				<div className="flex items-center lg:w-2/3 shadow-xl ml-auto bg-zinc-900 text-white">
+					<div className="w-2/3 p-4 lg:p-8">
+						<h2
+							className="text-3xl lg:text-4xl xl:text-5xl mb-4 lg:mb-8 scroll-m-24"
+							id="donate"
+						>
+							Donate
+						</h2>
+						<p className="text-xl mb-4 lg:mb-8">
+							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id
+							doloremque accusantium at cupiditate quaerat temporibus?
+						</p>
+
+						<a href="#" className="inline-block bg-white text-black px-7 py-2">
+							Buy me a coffee
+						</a>
+					</div>
 					<div
-						className="uk-flex uk-flex-middle uk-card uk-card-secondary uk-margin-left uk-margin-remove-left@m"
-						id="donate"
-					>
-						<div className="uk-width-2-3 uk-card-body">
-							<h2 className="uk-heading-small">Donate</h2>
-							<p className="uk-h4 uk-margin-top">
-								Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id
-								doloremque accusantium at cupiditate quaerat temporibus?
-							</p>
-							<p>
-								<a href="#" className="uk-button uk-button-secondary">
-									Buy me a coffee
-								</a>
-							</p>
-						</div>
-						<div
-							className="uk-width-1-3 uk-card-media-right uk-height-large uk-background-cover"
-							style={{
-								backgroundImage: `url(https://images.pexels.com/photos/6207392/pexels-photo-6207392.jpeg?w=640)`,
-							}}
-						></div>
+						className="w-1/3 h-80 lg:h-96 bg-cover bg-center"
+						style={{
+							backgroundImage: `url(https://images.pexels.com/photos/6207392/pexels-photo-6207392.jpeg?w=640)`,
+						}}
+					></div>
+				</div>
+			</div>
+
+			<div className="">
+				<div className="flex items-center lg:w-1/2 shadow-xl mx-auto bg-white">
+					<div className="p-4 lg:p-8 text-center">
+						<h2 className="text-3xl lg:text-4xl xl:text-5xl mb-4 lg:mb-8">
+							Other
+						</h2>
+						<p className="text-xl mb-4 lg:mb-8">
+							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas
+							harum quo doloremque sequi quis laborum delectus animi soluta.
+							Minima doloribus ullam omnis sit veniam itaque beatae aspernatur
+							illo odit dolore?
+						</p>
+						<p className="italic">Lorem ipsum dolor sit amet.</p>
 					</div>
 				</div>
 			</div>

@@ -18,44 +18,45 @@ export async function generateMetadata() {
 	};
 }
 
-export default function Blogs({ blogs }) {
+export default function Blogs({}) {
 	let blogs = getAllBlogs();
 
 	return (
 		<>
-			<div className="uk-container">
-				<div
-					className="uk-grid-match uk-child-width-1-3@m uk-child-width-1-2@s"
-					uk-grid=""
-				>
-					{blogs.map((props, index) => (
-						<div key={`blog-${index}`}>
+			<div className="max-w-6xl mx-auto">
+				<div className="grid gap-6 md:grid-cols-3 sm:grid-cols-2 lg:gap-9">
+					{blogs.map((item, index) => (
+						<div
+							key={`blog-${index}`}
+							className={`shadow-lg flex flex-col ${
+								item.invert ? "bg-zinc-900 text-white" : "bg-white"
+							}`}
+						>
 							<div
-								className={`uk-card ${
-									invert ? "uk-card-secondary" : "uk-card-default"
-								}`}
+								className="h-72 bg-cover bg-center flex"
+								style={{ backgroundImage: `url(${item.image.src})` }}
 							>
-								<div
-									className="uk-card-media-top uk-height-medium uk-background-cover"
-									style={{ backgroundImage: `url(${image.src})` }}
-								>
-									<div
-										className={`uk-card-badge uk-label ${
-											invert
-												? "uk-background-secondary"
-												: "uk-background-default"
+								<div className="my-4 mr-4 ml-auto">
+									<span
+										className={`py-0.5 px-2 text-sm shadow ${
+											item.invert ? "bg-zinc-900 text-white" : "bg-white"
 										}`}
-										style={{ color: invert ? "#fff" : "#000" }}
 									>
-										{date}
-									</div>
+										{item.date}
+									</span>
 								</div>
-								<div className="uk-card-body">
-									<h3 className="uk-card-title">{title}</h3>
-									<p>{description}</p>
+							</div>
+							<div className="p-8 flex flex-col gap-4 flex-1 justify-between">
+								<h3 className="text-2xl">{item.title}</h3>
+								<p className="">{item.description}</p>
+								<div className="">
 									<Link
-										href={`/blog/${slug}`}
-										className="uk-button uk-button-secondary"
+										href={`/blog/${item.slug}`}
+										className={`inline-block px-7 py-2 shadow ${
+											item.invert
+												? "bg-white text-black"
+												: "bg-zinc-900 text-white"
+										}`}
 									>
 										Read
 									</Link>

@@ -51,9 +51,9 @@ export default function Blog({ params: { slug } }) {
 
 	return (
 		<>
-			<div className="uk-container uk-container-small">
-				<div className="uk-article">
-					<p className="uk-text-lead">{date}</p>
+			<div className="max-w-5xl mx-auto">
+				<div className="text-2xl mb-4 px-4 sm:px-8">{date}</div>
+				<div className="prose prose-img:mx-auto max-w-none px-4 sm:px-8">
 					<MDXRemote
 						source={content}
 						components={{
