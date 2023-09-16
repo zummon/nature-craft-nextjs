@@ -30,7 +30,7 @@ export default function Home() {
 	return (
 		<>
 			<div className="max-w-6xl mx-auto mb-10">
-				<div className="flex gap-6 overflow-x-clip snap-x pb-8 lg:gap-9">
+				<div className="flex gap-6 overflow-x-auto snap-x pb-8 lg:gap-9">
 					{blogs.map((blog, index) => (
 						<div
 							key={`blog-${index}`}
